@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='calculator.css') }}"/>
+</head>
+<body>
+    <h1>Kalkulator napisany we Flasku</h1>
+    <form method="post" action="{{ url_for('operation_result') }}" id="calculator_form">
+        <label for="liczba1">Pierwsza liczba:</label>
+        <input type="text" name="liczba1" id="liczba1">
+        <br/>
+        <label for="Input2">Druga Liczba:</label>
+        <input type="text" name="Input2" id="Input2">
+        <br/>
+        <label for="operation">Operacja</label>
+        <select id="operation" name="operation">
+            <option value="+">Dodawanie</option>
+            <option value="-">Odejmowanie</option>
+            <option value="/">Dzielenie</option>
+            <option value="*">Mnożenie</option>
+        </select>
+        <br/>
+        <input type="submit" value="Submit"/>
+        <input type="reset"  value="RESET" style="color: red;"/>
+    </form>
+    {% if calculation_success == True %}
+        <br/>
+        <p>Wynik: {{input1}} {{operation}} {{input2}} = {{result}}</p>
+    {% endif %}
+    {% if calculation_success == False %}
+        <br/>
+        <p>{{error}}</p>
+        <p>{{input1}} {{operation}} {{input2}} = "{{result}}"</p>
+    {% endif %}
+</body>
+</html>
